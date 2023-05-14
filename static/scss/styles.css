@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+#topnavbar {
+    position: sticky; 
+    top: 0;
+    z-index: 9999;
+}
+
+#leftnavbar {
+    position: fixed;
+    top: 0px;
+    z-index: 9998;
+}
+
+.right-content {
+    position: absolute;
+    left: 20%;
+} 
+
+#leftnavbar li a {
+    font-family: Courier;
+    font-size: 18px;
+    padding: 8px;
+}
+
+#leftnavbar li a:hover {
+    background-color: black;
+    border-radius: 8px;
+}

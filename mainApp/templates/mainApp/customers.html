@@ -1,0 +1,48 @@
+{% extends 'mainApp/main.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <a href="{% url 'add_customer' %}"><button type="button" class="btn btn-success">Add Customer</button></a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header text-center">Total Customer</div>
+                <div class="card-body text-center">{{ total_customer }}</div>
+             </div>
+        </div>
+    </div>
+
+    <p class="h2">All Customers</p>
+    <div>
+        <table class="table table-bordered">
+            <thead class="bg-info">
+                <tr>
+                    <th>Id</th>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Profile</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+                {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.id }}</td>
+                        <td>{{ customer.name }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>
+                            <a href="{% url 'customer' customer.id %}"><button type="button" class='btn btn-success'>Show</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+               
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

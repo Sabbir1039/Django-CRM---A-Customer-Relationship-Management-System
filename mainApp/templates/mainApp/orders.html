@@ -1,0 +1,70 @@
+{% extends "mainApp/main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="row bg-secondary rounded">
+    
+    <div class="col-auto col-md-3">
+        <div class="card card-sm">
+            <div class="card-header text-center">Total Orders</div>
+            <div class="card-body text-center">{{ total_orders }}</div>
+        </div>
+    </div>
+
+    <div class="col-auto col-md-3">
+        <div class="card card-sm">
+            <div class="card-header text-center">Pending</div>
+            <div class="card-body text-center">{{ pending }}</div>
+        </div>
+    </div>
+
+    <div class="col-auto col-md-3">
+        <div class="card card-sm">
+            <div class="card-header text-center">Out for delevery</div>
+            <div class="card-body text-center">{{ out_for_delevery }}</div>
+        </div>
+    </div>
+
+    <div class="col-auto col-md-3">
+        <div class="card card-sm">
+            <div class="card-header text-center">Orders Delevered</div>
+            <div class="card-body text-center">{{ delivered }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+
+    <div class="col-md-12">
+        <span><a class="btn btn-success"  href="{% url 'order_form' %}">Place Order</a></span>
+        <hr>
+        <p class="h4">All Orders</p> 
+        <hr>
+        <table class="table table-striped small">
+            <thead class="bg-info">
+                <tr>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.customer }}</td>
+                        <td>{{ order.product }}</td>
+                        <td>{{ order.status }}</td>
+                        <td><a href="{% url 'update_order' order.id %}"><button class="btn btn-sm bg-warning" type="button">Update</button></a></td>
+                        <td><a href="{% url 'delete_order' order.id %}"><button class="btn btn-sm bg-danger" type="button">Remove</button></a></td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

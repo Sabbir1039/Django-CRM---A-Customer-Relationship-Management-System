@@ -1,0 +1,16 @@
+{% extends "mainApp/main.html" %}
+
+{% block content %}
+    <form action="" method="POST">
+        <p class="h2">{{ title }}</p>
+        <hr class="">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <div class="control-label">{{ field.label }}</div>
+                <div class="form-control">{{ field }}</div>
+            </div>
+        {% endfor %}
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+{% endblock %}

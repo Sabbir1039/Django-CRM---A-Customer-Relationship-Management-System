@@ -1,0 +1,51 @@
+{% extends 'mainApp/main.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+            <a href="#"><button type="button" class="btn btn-success">Add Products</button></a>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header text-center">Total Products</div>
+            <div class="card-body text-center">{{ total_product }}</div>
+         </div>
+    </div>
+</div>
+
+    <p class="h2">All Products</p>
+    <div>
+        <table class="table table-bordered">
+            <thead class="bg-info">
+                <tr>
+                    <th>Id</th>
+                    <th>Product Name</th>
+                    <th>Unit Price</th>
+                    <th>Catagory</th>
+                    <th>Tags</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.unit_price }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>
+                        {% for tag in product.Tags.all %}
+                            <li>{{ tag }}</li>
+                        {% endfor %}
+                    </td>
+                    <td>{{ product.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

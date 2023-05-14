@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database files
+*.sqlite3
+*.db
+
+# Logs and temporary files
+logs/
+*.log
+*.swp
+*.swo
+*.tmp
+*.pid
+*.bak
+
+# Media and static files
+media/
+staticfiles/
+
+# Secret files
+.env
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Dependency files
+venv/
+pipenv.lock
+pipfile.lock
+
+# Other project files
+*.pyc
+*.bak
+*.zip
+*.gz
+*.tar.gz

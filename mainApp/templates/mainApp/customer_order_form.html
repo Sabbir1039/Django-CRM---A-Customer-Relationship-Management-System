@@ -1,0 +1,15 @@
+{% extends "mainApp/main.html" %}
+
+{% block content %}
+    <form action="" method="POST">
+        <p class="h2">Place order for {{ customer.name }}</p>
+        <hr class="">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+            {{ form }}
+            <hr>
+        {% endfor %}
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+{% endblock %}
