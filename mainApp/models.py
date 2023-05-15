@@ -22,7 +22,6 @@ class Product(models.Model):
         ('Outdoor', 'Outdoor'),
     )
     name = models.CharField(max_length=100)
-    description = models.TextField(null=True, blank=True)
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50, null=True, choices=choices)
     Tags = models.ManyToManyField(Tag)    

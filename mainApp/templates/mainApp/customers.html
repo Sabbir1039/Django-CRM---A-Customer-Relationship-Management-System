@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card card-body">
-                <a href="{% url 'add_customer' %}"><button type="button" class="btn btn-success">Add Customer</button></a>
+                <a href="{% url 'add_customer' %}"><button type="button" class="btn btn-success btn-block">Add Customer</button></a>
             </div>
         </div>
 
@@ -15,6 +15,14 @@
                 <div class="card-body text-center">{{ total_customer }}</div>
              </div>
         </div>
+    </div>
+
+    <div class="card card-body my-2">
+        <form method="GET">
+            {{ customer_filter.form }}
+            <button class="btn btn-success btn-sm" type="submit">Search</button>
+            <input class="btn btn-warning btn-sm" type="reset" value="Reset">
+        </form>
     </div>
 
     <p class="h2">All Customers</p>

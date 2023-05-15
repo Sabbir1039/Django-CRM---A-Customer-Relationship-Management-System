@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card card-body">
-            <a href="#"><button type="button" class="btn btn-success">Add Products</button></a>
+            <a href="{% url 'product_form' %}"><button type="button" class="btn btn-success btn-block">Add Products</button></a>
         </div>
     </div>
 
@@ -16,9 +16,17 @@
     </div>
 </div>
 
+    <div class="card card-body p-2 my-2">
+        <form method="GET">
+            {{ product_filter.form }}
+            <button class="btn btn-success btn-sm" type="submit">Search</button>
+            <input class="btn btn-warning btn-sm" type="reset" value="Reset">
+        </form>
+    </div>
+
     <p class="h2">All Products</p>
     <div>
-        <table class="table table-bordered">
+        <table class="table table-bordered small">
             <thead class="bg-info">
                 <tr>
                     <th>Id</th>
@@ -26,7 +34,8 @@
                     <th>Unit Price</th>
                     <th>Catagory</th>
                     <th>Tags</th>
-                    <th>Description</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
 
@@ -42,7 +51,8 @@
                             <li>{{ tag }}</li>
                         {% endfor %}
                     </td>
-                    <td>{{ product.description }}</td>
+                    <td><a href="{% url 'update_product' product.id %}" class="btn btn-warning btn-sm" href="" >Update</a></td>
+                    <td><a href="{% url 'delete_product' product.id %}" class="btn btn-danger btn-sm" href="" >Delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
