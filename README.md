@@ -45,8 +45,8 @@ We welcome contributions from anyone interested in improving this project. To co
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+None
 
 ## Contact
 
-If you have any questions or feedback about this project, please feel free to reach out to us at [contact@mycompany.com](mailto:contact@mycompany.com).
+If you have any questions or feedback about this project, please feel free to reach out to us at [sabbirmd31948@gmail.com](sabbirmd31948@gmail.com).
