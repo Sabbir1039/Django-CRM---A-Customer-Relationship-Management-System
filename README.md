@@ -33,22 +33,18 @@ This is a Django-based CRM system designed to help businesses manage their custo
 To get started with this project, you'll need to follow these steps:
 
 1. Clone the repository to your local machine.
-2. Install the required dependencies using pip.
+2. Install the required dependencies using pip run: pip install -r requirements.txt
 3. Set up a new virtual environment.
 4. Run the database migrations using `python manage.py migrate`.
 5. Create a superuser account using `python manage.py createsuperuser`.
 6. Start the development server using `python manage.py runserver`.
 
 ## Contributing
-
-We welcome contributions from anyone interested in improving this project. To contribute, simply fork the repository, make your changes, and submit a pull request. Please make sure to follow the project's code style and guidelines.
+open
 
 ## License
-
 None
 
 ## Contact
-
-
 If you have any questions or feedback about this project, please feel free to reach out to us at [sabbirmd31948@gmail.com](sabbirmd31948@gmail.com).
 
