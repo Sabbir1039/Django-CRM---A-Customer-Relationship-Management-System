@@ -1,0 +1,117 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static '/scss/styles.css'%}">
+    <title>Dashboard</title>
+
+</head>
+
+<body>
+    {% comment %} navbar {% endcomment %}
+    <div class="position-relative">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="topnavbar">
+            <div class="navbar">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="{% url 'dashboard' %}">Customer Relation Management
+                            System</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'account' %}">Settings</a>
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ml-lg-2">
+                        <!-- profile dropdown  -->
+                        <div class="d-flex">
+                            <a class="nav-link text-light mr-2" href="#">User : {{ request.user }}</a>
+                            <a class="nav-link text-light mr-2" href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h1 class="h3 text-center my-3">Welcome {{ request.user.username }}</h1>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <div class="card card-sm bg-info">
+                    <div class="card-header text-center">Total Orders</div>
+                    <div class="card-body text-center">{{ total_orders }}</div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="card card-sm bg-info">
+                    <div class="card-header text-center">Order Pending</div>
+                    <div class="card-body text-center">{{ pending }}</div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="card card-sm bg-info">
+                    <div class="card-header text-center">Out For Delevery</div>
+                    <div class="card-body text-center">{{ out_for_delevery }}</div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="card card-sm bg-info">
+                    <div class="card-header text-center">Order Deliverd</div>
+                    <div class="card-body text-center">{{ deliverd }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md">
+                <table class="table table-sm table-striped">
+                    <tr class="bg-info">
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Date Orderd</th>
+                        <th>Status</th>
+                    </tr>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.product }}</td>
+                        <td>{{ order.product.category }}</td>
+                        <td>{{ order.order_date }}</td>
+                        <td>{{ order.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

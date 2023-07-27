@@ -1,5 +1,7 @@
 {% extends "mainApp/main.html" %}
 
+{% load widget_tweaks %}
+
 {% block content %}
 <div class="card card-body">
     <form action="" method="POST">
@@ -7,10 +9,12 @@
         <hr class="">
         {% csrf_token %}
         {% for field in form %}
-            <div class="form-group">
-                <div class="">{{ field.label }}</div>
-                <div class="">{{ field }}</div>
+        <div class="form-group">
+            <div class="">{{ field.label }}</div>
+            <div class="">
+                {% render_field field class="form-control" %} <!-- Add class here -->
             </div>
+        </div>
         {% endfor %}
         <button class="btn btn-success" type="submit">Submit</button>
     </form>
