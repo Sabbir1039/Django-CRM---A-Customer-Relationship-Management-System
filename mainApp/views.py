@@ -15,7 +15,6 @@ from .decorators import unauthenticated_user, allowed_users, admin_only
 
 @unauthenticated_user
 def register(request):
-
     form = UserForm
     if request.method == "POST":
         form = UserForm(request.POST)
@@ -23,10 +22,14 @@ def register(request):
             user = form.save()
 
             username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+
             group = Group.objects.get(name='customer')
             user.groups.add(group)
             Customer.objects.create(
                 user=user,
+                name=username,
+                email=email,
             )
 
             messages.success(
@@ -40,7 +43,6 @@ def register(request):
 
 @unauthenticated_user
 def loginpage(request):
-
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -59,8 +61,8 @@ def logoutpage(request):
     return redirect('loginpage')
 
 
-@login_required(login_url='loginpage')
-@admin_only
+# @login_required(login_url='loginpage')
+# @admin_only
 def dashboard(request):
     orders = Order.objects.all()
     recent_orders = orders.order_by('-id')[:5]
@@ -82,7 +84,7 @@ def dashboard(request):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['customer'])
+# @allowed_users(allowed_roles=['customer'])
 def accont_setting(request):
     customer = request.user.customer
     form = CustomerForm(instance=customer)
@@ -98,7 +100,7 @@ def accont_setting(request):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['customer'])
+# @allowed_users(allowed_roles=['customer'])
 def user_page(request):
     orders = request.user.customer.order_set.all()
     total_orders = orders.count()
@@ -116,7 +118,7 @@ def user_page(request):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def customers(request):
     customers = Customer.objects.all()
     total_customer = customers.count()
@@ -131,7 +133,7 @@ def customers(request):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def customer(request, pk):
     customer = Customer.objects.get(id=pk)
     orders = customer.order_set.all()
@@ -145,7 +147,7 @@ def customer(request, pk):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def products(request):
     products = Product.objects.all()
     product_filter = ProductFilter(request.GET, queryset=products)
@@ -160,7 +162,7 @@ def products(request):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def product_form(request):
     form = ProductForm()
     if request.method == "POST":
@@ -176,7 +178,7 @@ def product_form(request):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def update_product(request, pk):
     product = Product.objects.get(id=pk)
     form = ProductForm(instance=product)
@@ -194,7 +196,7 @@ def update_product(request, pk):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def delete_product(request, pk):
     product = Product.objects.get(id=pk)
     if request.method == "POST":
@@ -207,7 +209,7 @@ def delete_product(request, pk):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def orders(request):
     orders = Order.objects.all()
     total_orders = orders.count()
@@ -228,7 +230,7 @@ def orders(request):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def order_form(request):
     form = OrderForm
 
@@ -246,7 +248,7 @@ def order_form(request):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def customer_multiple_order_form(request, pk):
     Orderformset = inlineformset_factory(
         Customer, Order, fields=('product', 'quantity', 'status'), extra=5)
@@ -265,7 +267,7 @@ def customer_multiple_order_form(request, pk):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def update_order(request, pk):
     order = Order.objects.get(id=pk)
     form = OrderForm(instance=order)
@@ -282,7 +284,7 @@ def update_order(request, pk):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def delete_order(request, pk):
     item = Order.objects.get(id=pk)
     if request.method == "POST":
@@ -295,7 +297,7 @@ def delete_order(request, pk):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def add_customer(request):
     form = CustomerForm()
     if request.method == "POST":
@@ -311,7 +313,7 @@ def add_customer(request):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def update_customer(request, pk):
     customer = Customer.objects.get(id=pk)
     form = CustomerForm(instance=customer)
@@ -328,7 +330,7 @@ def update_customer(request, pk):
 
 
 @login_required(login_url='loginpage')
-@allowed_users(allowed_roles=['admin'])
+# @allowed_users(allowed_roles=['admin'])
 def delete_customer(request, pk):
     customer = Customer.objects.get(id=pk)
     if request.method == "POST":

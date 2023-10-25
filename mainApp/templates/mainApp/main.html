@@ -16,7 +16,7 @@
 <body>
     {% comment %} navbar {% endcomment %}
     <div class="position-relative">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="topnavbar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed" id="topnavbar">
             <a class="navbar-brand" href="{% url 'dashboard' %}">CRM</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
 
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            {% if request.user.is_staff %}
+            {% if request.user %}
             <div class="bg-info col-auto col-md-3 col-lg-2" id="leftnavbar" style="min-height: 100vh">
                 <!-- left side navbar -->
                 <nav class="navbar navbar-expand-lg navbar-dark mt-5">
